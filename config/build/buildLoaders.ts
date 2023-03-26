@@ -13,12 +13,33 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         options: {
           modules: {
             auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-            localIdentName: options.isDev ? '[path][name]__[local]' : '[hash:base64:8]',
+            localIdentName: options.isDev
+              ? '[path][name]__[local]'
+              : '[hash:base64:8]',
           },
         },
       },
       'sass-loader',
     ],
+  };
+
+  const babelLoader = {
+    test: /\.m?(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [
+          ['i18next-extract',
+            {
+              locales: ['ru', 'en'],
+              keyAsDefaultValue: true,
+            },
+          ],
+        ],
+      },
+    },
   };
 
   const typescriptLoader = {
@@ -44,6 +65,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   return [
     fileLoader,
     svgLoader,
+    babelLoader,
     typescriptLoader,
     cssLoader,
   ];

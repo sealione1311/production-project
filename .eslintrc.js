@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -25,20 +26,25 @@ module.exports = {
 
   ],
   rules: {
-    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-props-no-spreading': 'warn',
     'react/function-component-definition': 'off',
     'no-underscore-dangle': 'off',
-    'no-undef': 'off',
-    'no-shadow': 'warn',
+    'no-shadow': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/require-default-props': 'off',
     'import/prefer-default-export': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'warn',
     'i18next/no-literal-string': ['error', { markupOnly: true }],
+    'max-len': ['error', { ignoreComments: true }],
+  },
+  globals: {
+    __IS_DEV__: true,
   },
   parser: '@typescript-eslint/parser',
   settings: {
