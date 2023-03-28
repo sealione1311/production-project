@@ -1,5 +1,6 @@
 {
   "Привет, мир": "Hello, world!!!",
   "Язык": "НЕ русский",
-  "Страница не найдена": "Page not found"
+  "Страница не найдена": "Page not found",
+  "throw error": "throw error"
 }
